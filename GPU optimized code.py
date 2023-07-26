@@ -34,3 +34,34 @@ len_J = torch.norm(J, dim=1, keepdim=True)
 total = compare / (len_i1 @ len_J.T)
 
 total.shape
+
+
+#####################################################
+# example with words imbeddings 
+# make sure to download gensim lib
+"""
+import gensim
+import gensim.downloader
+glove_vectors = gensim.downloader.load('glove-twitter-25')
+
+
+words = ['hello','hi','hate','king','queen','car']
+embs = glove_vectors[words]
+print(embs.shape)
+
+import torch
+
+I = torch.tensor(embs)
+J = torch.tensor(embs)
+
+compare = I @ J.T
+
+len_i1 = torch.norm(I,dim=1, keepdim = True)
+len_J = torch.norm(J, dim=1, keepdim=True)
+# len_J.shape
+
+total = compare / (len_i1 @ len_J.T)
+
+print(total.shape, total) 
+
+"""
